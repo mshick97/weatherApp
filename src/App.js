@@ -12,8 +12,8 @@ function App() {
       setLong(position.coords.longitude);
     });
 
-    console.log("Latitude is:", lat);
-    console.log("Longitude is:", long);
+    console.log("Latitude is:", lat)
+    console.log("Longitude is:", long)
   }, [lat, long]);
 
   return (
