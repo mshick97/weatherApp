@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 function App() {
 
-  require('dotenv').config()
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
 
