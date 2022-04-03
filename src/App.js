@@ -7,7 +7,7 @@ function App() {
   const [long, setLong] = useState([]);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (position) {
+    navigator.geolocation.getCurrentPosition((position) => {
       setLat(position.coords.latitude);
       setLong(position.coords.longitude);
     });
