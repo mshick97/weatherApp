@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
+import ReactDOM from 'react-dom';
 import Weather from './Components/weather.js';
 import { Dimmer, Loader } from 'semantic-ui-react';
 import axios from 'axios';
@@ -17,13 +18,19 @@ function App() {
       setLong(position.coords.longitude);
     });
 
-    axios.get(`${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`)
-      .then((weatherData) => {
-        setData(weatherData)
-        if (lat > 0 && long > 0) setLoading(false);
-        console.log(weatherData);
-      });
-  }, [lat, long]);
+    getWeather(lat, long)
+      .then((weather) => {
+        setData(weather);
+        setLoading(false);
+      })
+
+  }, [lat, long])
+
+  function getWeather(latResults, longResults) {
+    const weatherDataReturned = axios.get(`${process.env.REACT_APP_API_URL}/weather/?lat=${latResults}&lon=${longResults}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`)
+    const jsonStringifiedData = JSON.stringify(weatherDataReturned);
+    return jsonStringifiedData;
+  }
 
   return (
     <div className="App">
