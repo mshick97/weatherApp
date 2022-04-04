@@ -20,16 +20,13 @@ function App() {
 
     getWeather(lat, long)
       .then((weather) => {
-        setData(weather);
+        setData(weather.data);
         setLoading(false);
       })
-
   }, [lat, long])
 
-  function getWeather(latResults, longResults) {
-    const weatherDataReturned = axios.get(`${process.env.REACT_APP_API_URL}/weather/?lat=${latResults}&lon=${longResults}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`)
-    const jsonStringifiedData = JSON.stringify(weatherDataReturned);
-    return jsonStringifiedData;
+  function getWeather(latRes, longRes) {
+    return axios.get(`${process.env.REACT_APP_API_URL}/weather/?lat=${latRes}&lon=${longRes}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`);
   }
 
   return (
